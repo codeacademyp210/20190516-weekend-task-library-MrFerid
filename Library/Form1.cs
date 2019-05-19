@@ -110,6 +110,7 @@ namespace Library
                 dataGridView1.Rows.Add(row);
             }
         }
+
         // Search for Client
         public void SearchClient()
         {
@@ -135,55 +136,42 @@ namespace Library
         // Search for book
         public void SearchBook()
         {
-            string srcText = textBox2.Text;
+            string srcTxt = textBox1.Text;
+            List<Books> bookList1 = new List<Books>();
+            List<Books> bookList2 = new List<Books>();
             List<Books> bookList = new List<Books>();
-            List<AuthorsBooks> abList = new List<AuthorsBooks>();
-            bookList = books.GetBook(srcText);
+            List<Authors> authorList = new List<Authors>();
 
-            if(bookList.Count == 0)
+            using (var db = new LibData())
             {
-                List<Categories> categoryList = categories.GetCategory(srcText);
-                foreach(Categories c in categoryList)
+                bookList1 = db.Books.Where(b => b.Name.Contains(srcTxt)).ToList();
+                bookList2 = db.Books.Where(b => b.Categories.Name.Contains(srcTxt)).ToList();
+                bookList = db.AuthorsBooks.Where(a => a.Authors.Name.Contains(srcTxt)).Select(b => b.Books).ToList();
+
+                bookList1.AddRange(bookList2);
+                bookList.AddRange(bookList1);
+
+                dataGridView1.Rows.Clear();
+                for (int i = 0; i < bookList.Count; i++)
                 {
-                    bookList = books.GetBooksByCategory(c.id);
+                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                    row.Cells[0].Value = bookList[i].id;
+                    row.Cells[1].Value = bookList[i].Name;
+
+                    int bookid = bookList[i].id;
+                    authorList = db.AuthorsBooks.Where(b => b.BookID == bookid).Select(ab => ab.Authors).ToList();
+                    foreach (Authors author in authorList)
+                    {
+                        row.Cells[2].Value += author.Name + " " + author.Surname + " , ";
+                    }
+
+                    row.Cells[3].Value = bookList[i].Price;
+                    dataGridView1.Rows.Add(row);
                 }
+
             }
-
-            if(bookList.Count == 0)
-            {
-                List<Authors> authorList = authors.GetAuthor(srcText);
-                foreach (Authors c in authorList)
-                {
-                    abList.AddRange(authorsBooksDB.GetPairByAuthor(c.id));
-                }
-
-                foreach(AuthorsBooks ab in abList)
-                {
-                    bookList.Add(books.Select(ab.BookID));
-                }
-
-            }
-
-            dataGridView1.Rows.Clear();
-            for (int i = 0; i < bookList.Count; i++)
-            {
-                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                List<AuthorsBooks> authorBookList = authorsBooksDB.Select(bookList[i].id);
-
-                row.Cells[0].Value = bookList[i].id;
-                row.Cells[1].Value = bookList[i].Name;
-
-                for (int j = 0; j < authorBookList.Count; j++)
-                {
-                    row.Cells[2].Value += authors.Select(authorBookList[j].AuthorID).Name + " " + authors.Select(authorBookList[j].AuthorID).Surname + ", ";
-                }
-
-                row.Cells[3].Value = bookList[i].Price;
-                dataGridView1.Rows.Add(row);
-            }
-
-
         }
+
 
         private void authorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -231,6 +219,17 @@ namespace Library
             {
                 button1.Enabled = false;
             }
+        }
+
+        private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Subforms.OrderForm orderForm = new Subforms.OrderForm();
+            orderForm.ShowDialog();
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            refreshGrids();
         }
     }
 }

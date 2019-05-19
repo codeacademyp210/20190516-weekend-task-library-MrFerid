@@ -49,19 +49,7 @@ namespace Library.DBClasses
 
             using(var db = new LibData())
             {
-                 clientList =  db.Clients.Where(c => c.Name.ToLower() == prop.ToLower()).ToList();
-                if(clientList.Count == 0)
-                {
-                    clientList = db.Clients.Where(c => c.Surname.ToLower() == prop.ToLower()).ToList();
-                }
-                if (clientList.Count == 0)
-                {
-                    clientList = db.Clients.Where(c => c.Phone.ToLower() == prop.ToLower()).ToList();
-                }
-                if (clientList.Count == 0)
-                {
-                    clientList = db.Clients.Where(c => c.Email.ToLower() == prop.ToLower()).ToList();
-                }
+                clientList = db.Clients.Where(c => c.Name.Contains(prop) || c.Surname.Contains(prop) || c.Phone.Contains(prop) || c.Email.Contains(prop)).ToList();
             }
             return clientList;
         }

@@ -30,12 +30,12 @@
         {
             this.txtName = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,6 +47,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(548, 22);
             this.txtName.TabIndex = 19;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // dataGridView2
             // 
@@ -57,21 +58,11 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            this.dataGridView2.Location = new System.Drawing.Point(12, 40);
+            this.dataGridView2.Location = new System.Drawing.Point(12, 44);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(673, 406);
+            this.dataGridView2.Size = new System.Drawing.Size(673, 402);
             this.dataGridView2.TabIndex = 22;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(566, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(119, 22);
-            this.button3.TabIndex = 21;
-            this.button3.Text = "Search";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Column1
             // 
@@ -106,6 +97,16 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.Width = 130;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(566, 8);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(119, 30);
+            this.button3.TabIndex = 21;
+            this.button3.Text = "Search";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // OrderForm
             // 

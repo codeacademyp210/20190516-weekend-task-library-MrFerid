@@ -240,34 +240,35 @@
             // booksToolStripMenuItem
             // 
             this.booksToolStripMenuItem.Name = "booksToolStripMenuItem";
-            this.booksToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
+            this.booksToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.booksToolStripMenuItem.Text = "Books";
             this.booksToolStripMenuItem.Click += new System.EventHandler(this.booksToolStripMenuItem_Click);
             // 
             // authorToolStripMenuItem
             // 
             this.authorToolStripMenuItem.Name = "authorToolStripMenuItem";
-            this.authorToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
+            this.authorToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.authorToolStripMenuItem.Text = "Authors";
             this.authorToolStripMenuItem.Click += new System.EventHandler(this.authorToolStripMenuItem_Click);
             // 
             // clientsToolStripMenuItem
             // 
             this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.clientsToolStripMenuItem.Text = "Clients";
             this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // ordersToolStripMenuItem
             // 
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.ordersToolStripMenuItem.Text = "Orders";
+            this.ordersToolStripMenuItem.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
             // 
             // categoriesToolStripMenuItem
             // 
             this.categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
-            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
+            this.categoriesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.categoriesToolStripMenuItem.Text = "Categories";
             this.categoriesToolStripMenuItem.Click += new System.EventHandler(this.categoriesToolStripMenuItem_Click);
             // 
@@ -307,6 +308,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.menuStrip1.ResumeLayout(false);

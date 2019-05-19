@@ -82,8 +82,12 @@ namespace Library.DBClasses
             {
                 db.Authors.Attach(author);
                 db.Authors.Remove(author);
-                if (db.SaveChanges() != 0) { result = true; }
-                else result = false;
+                try
+                {
+                    if (db.SaveChanges() != 0) { result = true; }
+                    else result = false;
+                }
+                catch(Exception exp) { }
             }
             if (result == true) return true;
             return false;
